@@ -1,0 +1,554 @@
+/* Code to change background colour */
+body {
+    background-color:#fefefe;
+}
+
+/* Move small text for "remember me" at login */
+#rememberHelpInline {
+    padding-left:20px;
+}
+
+/* Remove bullet points on list items */
+li {
+    list-style-type:none;
+}
+
+li.number {
+    list-style-type:decimal;
+}
+
+/* Code for the "NOTE:" at the top of the pages */
+p#headernotice {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+/* Code for the search bar */
+.navbar-form, navbar-left {
+    float:left;
+    margin-left:10px;
+    width:640px;
+    margin-top:5px;
+}
+
+.form-rounded {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.search {
+    background-color: #fefefe;
+    border-color: #2e6e9e;
+    margin-left:4px;
+    height:40px;
+    color:#2e6e9e;
+}
+
+.search:hover {
+    color:#fefefe;
+    background-color: #e17009;
+    border-color: #2e6e9e;
+}
+
+.search:focus, .search:target .form-control:focus, #searchbar:focus {
+    box-shadow:0 0 0 .2rem #2e6e9e
+}
+
+/* Code for the extra buttons on the navigation bar (on the far right on it) */
+#extrabuttons{
+    float:right;
+    margin-left: 250px;
+}
+
+/* Code to format the navigation menu */
+.nav {
+    padding-left:10px;
+}
+
+ul.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#2e6e9e;
+    padding-top:5px;
+}
+
+#home, #review, #logout {
+    padding-left:10px;
+}
+
+li{
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: #fefefe;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .reviewdrop:hover .dropbtn {
+    background-color: #e17009;
+    color: #fefefe;
+}
+
+li.reviewdrop {
+    display: inline-block;
+}
+
+.review-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.review-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.review-content a:hover {
+    background-color: #e17009;
+}
+
+.reviewdrop:hover .review-content {
+    display: block;
+}
+
+/* Code to make the labels in line with each other */
+label {
+    display: inline-block;
+    width:220px;
+    text-align: right;
+    padding-right: 10px;
+}
+
+/* Code for "loggin in as" section */
+.loggedin {
+    padding-left:10px;
+    padding-top: 10px;
+}
+
+/* Code for the "Previous Page" button */
+#backbutton{
+    margin-left:20px;
+}
+
+.previouspage {
+    color:#e17009;
+    background-color: #fefefe;
+    border-color: #2e6e9e;
+}
+
+.previouspage:hover {
+    color:#fefefe;
+    background-color: #2e6e9e;
+    border-color: #2e6e9e;
+}
+
+.previouspage:focus {
+    box-shadow:0 0 0 .2rem #fefefe;
+}
+
+/* Code for the your account page */
+#youraccountemail, #youraccountpassword, #youraccountusername {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:250px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0px;
+    overflow: hidden;
+}
+
+/* Code for the equipment stock */
+#equipmentstockgamesgraphics {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#equipmenttablestock{
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:auto;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Code for the "List of Equipment" page */
+table.equipmentlisttable{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: auto;
+    table-layout: fixed;
+    text-align: center;
+}
+
+#equipmentlistname, #equipmentlistcode, #equipmentlistlocation, #equipmentlistview {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:300px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Code for the styling of the "Equipment Details" page */
+p#equipmentabout, #equipmentinfo, #equipmentextra, #equipmentextra, #equipmentnotesheader, #equipmentupdate {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:200px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-size:23px;
+
+}
+
+#equipmentdetails{
+    -moz-column-count: 3;
+    -moz-column-gap: .3em;
+    -webkit-column-count: 3;
+    -webkit-column-gap: .3em;
+    column-count: 3;
+    column-gap: .5em;
+}
+
+ #equipmentnotes {
+    -moz-column-count: 3;
+    -moz-column-gap: .3em;
+    -webkit-column-count: 3;
+    -webkit-column-gap: .3em;
+    column-count: 1;
+    column-gap: .5em;
+    margin-left:40px;
+}
+
+#updatedcode, #updatedname, #updatedtype, #updatedmanufacturer, #updatedprice, #updatedlocation, #updatednotes {
+    margin-left:10px;
+}
+
+/* This is to make the boxes look disabled until ticked. -moz-read-only is needed for it to work in Firefox, read-only is for Chrome. Does not work in IE */
+#updatedcode:-moz-read-only, #updatedname:-moz-read-only, #updatedtype:-moz-read-only, #updatedmanufacturer:-moz-read-only, #updatedprice:-moz-read-only, #updatedlocation:-moz-read-only, #updatednotes:-moz-read-only, #currentusername:-moz-read-only{
+    background-color: #F2F2F2 !important;
+    color: grey;
+    border-color: #ddd;
+}
+
+#updatedcode:read-only, #updatedname:read-only, #updatedtype:read-only, #updatedmanufacturer:read-only, #updatedprice:read-only, #updatedlocation:read-only, #updatednotes:read-only, #currentusername{
+    background-color: #F2F2F2 !important;
+    color: grey;
+    border-color: #ddd;
+}
+
+/* Code for styling the "Add Equipment" page */
+#basic-addon1 {
+    padding-left: 1000px;
+}
+
+#equipmentstandard, #equipmentcamera {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:320px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+textarea {
+    resize: both;
+    padding-left: 10px;
+}
+
+#locationHelpInline {
+    padding-left:10px;
+    padding-top:10px;
+}
+
+/* Code for styling the "Delete Equipment" page */
+table.deleteequipmenttable{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: auto;
+    table-layout: fixed;
+    text-align: center;
+}
+
+#deleteequipmentname, #deleteequipmentcode, #deleteequipmentcheck {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:200px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Code for the add loan form page */
+#standardloanheader, #cameraloanheader {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:300px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#secondloanheader {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:225px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    margin-left:10px;
+    overflow: hidden;
+}
+
+#standardloan, #cameraloan {
+    display:inline-block;
+}
+
+#additionalstudentcameracode, #additionalstaffcameracode, #additionalpgrcameracode {
+    display:none;
+    padding-left:40px;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+#cameracodeHelpInline {
+    padding-left:60px;
+    padding-top:10px;
+    padding-bottom:5px;
+}
+
+/* Code for the list loans page */
+table.loanlisttable{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: auto;
+    table-layout: fixed;
+    text-align: center;
+}
+
+#loanlistto, #loanlisttaken, #loanlistdue, #loanlistextension, #loanlistview, #loanlistreturned, #loanlistreminders {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:300px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#loanlistequipment {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:400px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Code for the styling of the "Loans Details" page */
+
+/* Only used for camera links */
+#equipmentcode5link {
+    margin-top: 5px;
+}
+
+#emailbuttons {
+    float:right;
+}
+
+#firstreminder {
+    padding-right:18px;
+}
+
+#firstreminderdisabled {
+    padding-left:18px;
+    cursor: not-allowed;
+}
+
+#secondreminderdisabled {
+    cursor: not-allowed;
+}
+
+#messages {
+    width:500px;
+}
+
+#loanabout, #loandates, #loanreturn, #loanextra, #loanreturned, #loanextend, #loanmissing, #loanmissingheader {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:250px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#loannotesheader {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:300px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+}
+
+#loandetails{
+    -moz-column-count: 5;
+    -moz-column-gap: .5em;
+    -webkit-column-count: 5;
+    -webkit-column-gap: .5em;
+    column-count: auto;
+    column-width: 400px;
+}
+
+ #loannotes {
+    -moz-column-count: 3;
+    -moz-column-gap: .3em;
+    -webkit-column-count: 3;
+    -webkit-column-gap: .3em;
+    column-count: 1;
+    column-gap: .5em;
+    margin-left:40px;
+}
+
+#loannotes, #missingitemslist {
+    display:inline-block;
+}
+
+#missingitemslist {
+    margin-left: 114px;
+}
+
+.alert-info {
+    color:black;
+}
+
+#returningloan, #extendingloan {
+    display:inline-block;
+}
+
+#extendingloan {
+    margin-left:19.5px;
+}
+
+.cleardate {
+    color: #e17009;
+    background-color: #fefefe;
+    border-color: #e17009;
+    margin-left:10px;
+}
+
+.cleardate:hover {
+    color:#fefefe;
+    background-color: #e17009;
+    border-color: #e17009;
+}
+
+.cleardate:disabled {
+    color:#fefefe;
+    background-color: #e17009;
+    border-color: #e17009;
+}
+
+.cleardate:focus {
+    box-shadow:0 0 0 .2rem #ffffff
+}
+
+/* Code for the "search results" page */
+#searchname, #searchcode, #searchview, #searchstudentid, #searchstudentcode, #searchstudentdue, #searchstudentreturned, #searchview2 {
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:300px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+}
+
+#equipmentresults, #studentresults, #cameraresults { 
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:350px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: auto;
+    table-layout: fixed;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+/* Only make certain tr to be alt colours */
+tr#tablealtcolour:nth-child(even) {
+    background: #c5dbec
+}
+
+tr#tablealtcolour:nth-child(odd) {
+    background: #ffffff
+}
+
+/* Code for the hyperlinks */
+#hyperlink
+{
+  color: #2e6e9e !important;
+}
