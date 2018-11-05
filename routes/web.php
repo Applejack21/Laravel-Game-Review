@@ -28,3 +28,7 @@ Route::post('addreview', 'ReviewController@addReview');
 Route::get('deletereviewform', 'ReviewController@deleteForm');
 
 Route::post('deletereviews', 'ReviewController@deleteReviews');
+
+Route::get('login', 'LoginController@loginForm');
+
+Route::post('login', 'LoginController@login');
