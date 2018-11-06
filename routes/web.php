@@ -37,6 +37,6 @@ Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
 
 Route::get('logout', 'LoginController@logout');
 
-Route::get('regsiter', 'LoginController@registerForm');
+Route::get('register', 'LoginController@registerForm');
 
 Route::post('register', 'LoginController@register');

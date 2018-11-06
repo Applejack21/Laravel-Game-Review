@@ -11,6 +11,7 @@
 @endif
 <h1>Login</h1>
 <br>
+<p>You must be logged in to use the system. You can register with the system <a href="{{'register'}}">here</a></p>
 <div>
 <form action="{{url('login')}}" method="POST">
 {{ csrf_field() }}
