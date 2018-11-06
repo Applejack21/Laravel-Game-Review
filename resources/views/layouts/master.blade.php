@@ -14,7 +14,15 @@
     
 <body>
 @section('header')
+    
+@if (Auth::check())
+<div class="loggedin"><b>Logged in as:</b> {{Auth::user()->username}}</div>
+@else
+<div class="loggedin"><b>Currently not logged in!</b></div>
+@endif
+    
     <p id="headernotice"><b>NOTE: </b>It is recommended to use either: <i>Firefox</i> or <i>Chrome</i> when using this site.</p>
+    
 <ul class="nav">
     <li id="home"><a href="{{url('homepage')}}">Homepage</a></li>
     <li id="review" class="reviewdrop">
@@ -25,7 +33,12 @@
             <a href="{{url('deletereviewform')}}">Delete Reviews</a>
         </div>
     </li>
-        
+
+@if (Auth::check())
+<li id="logout"><a href="{{url('logout')}}">Logout</a></li>
+@else
+<li id="logout"><a href="{{url('login')}}">Login</a></li>
+@endif
 
 </ul>
     @show

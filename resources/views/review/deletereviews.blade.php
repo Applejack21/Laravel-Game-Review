@@ -13,6 +13,7 @@
             <input type='checkbox' value='{{$review->id}}' name='reviews[]'/>
         </div>
     @endforeach
+<br>
     <input type="submit" name="submitBtn" value="Delete Reviews">
 </form>
 

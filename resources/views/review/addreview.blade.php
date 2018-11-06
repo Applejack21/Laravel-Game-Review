@@ -1,20 +1,25 @@
 @extends('layouts.master')
 @section('title', 'Add a new review')
 @section('content')
-<form action="{{url('addreview')}}" method="POST">
-{{ csrf_field() }}
+
 <h1>Add New Review</h1>
+
 @if (count($errors) > 0)
-    <div>
+    <div class="alert alert-danger" role="alert">
         <ul>
+            <b>Please check the errors below and correct them:</b>
+            <br>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                <br>
+            <li>{{ $error }}</li>
+            <br>
             @endforeach
         </ul>
     </div>
 @endif
+
 <div>
+<form action="{{url('addreview')}}" method="POST">
+{{ csrf_field() }}
 <label for="review_title">Review title:</label>
 <input type="text" name="review_title" id="review_title" value="{{old('review_title')}}">
 <br>
@@ -44,6 +49,6 @@
 <br>
     
 <input type="submit" name="submitBtn" value="Add Review">
-</div>
 </form>
+</div>
 @endsection

@@ -16,10 +16,15 @@ class LoginController extends Controller
     }
     function login(Request $request)
     {
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             return redirect('/homepage');
         }
-        $request->session()->flash('loginError', "Those details aren't correct");
+        $request->session()->flash('alert-danger', "The username and/or password you entered was incorrect. Please try again.");
+        return redirect('/login');
+    }
+    function logout()
+    {
+        Auth::logout();
         return redirect('/login');
     }
 }

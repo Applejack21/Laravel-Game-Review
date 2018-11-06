@@ -78,4 +78,9 @@ class ReviewController extends Controller
         Reviews::destroy($request->reviews);
         return redirect('deletereviewform');
     }
+    
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
 }

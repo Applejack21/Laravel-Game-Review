@@ -12,7 +12,8 @@
 */
 
 
-
+Route::group(['middleware' => 'auth'], function() {
+    
 Route::get('/', 'ReviewController@index');
 
 Route::get('homepage', 'ReviewController@index');
@@ -27,8 +28,15 @@ Route::post('addreview', 'ReviewController@addReview');
 
 Route::get('deletereviewform', 'ReviewController@deleteForm');
 
-Route::post('deletereviews', 'ReviewController@deleteReviews');
+Route::post('deletereviews', 'ReviewController@deleteReviews');  
+});
 
 Route::get('login', 'LoginController@loginForm');
 
-Route::post('login', 'LoginController@login');
+Route::post('login', [ 'as' => 'login', 'uses' => 'LoginController@login']);
+
+Route::get('logout', 'LoginController@logout');
+
+Route::get('regsiter', 'LoginController@registerForm');
+
+Route::post('register', 'LoginController@register');
