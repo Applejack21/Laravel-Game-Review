@@ -26,7 +26,7 @@ Route::get('addreviewform', 'ReviewController@addForm');
 
 Route::post('addreview', 'ReviewController@addReview');
 
-Route::get('deletereviewform', 'ReviewController@deleteForm');
+Route::get('deletereviewform', 'ReviewController@deleteForm')->middleware('can:admin,App\Reviews');
 
 Route::post('deletereviews', 'ReviewController@deleteReviews');  
 });

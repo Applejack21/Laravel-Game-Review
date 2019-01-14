@@ -25,7 +25,7 @@
 <br>
 
 <label for="review_by">Reviewed by:</label>
-<input type="text" name="review_by" id="review_by" value="{{old('review_by')}}">
+<input type="text" name="review_by" id="review_by" value="{{Auth::user()->username}}" readonly>
 <br>
     
 <label for="game_title">Game title:</label>

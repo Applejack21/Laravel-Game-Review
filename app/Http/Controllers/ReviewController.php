@@ -33,7 +33,7 @@ class ReviewController extends Controller
     function addReview(Request $request)
     {
         $this->validate($request, [
-            'review_title' => 'required|max:300',
+            'review_title' => 'required|max:50',
             'review_by' => 'required|max:100',
             'game_title' => 'required|max:100',
             'review_desc' => 'required|max:5000',
@@ -41,7 +41,7 @@ class ReviewController extends Controller
         ],
         [
         'review_title.required' => 'Review title: Make sure you\'ve filled out the review title field.',
-        'review_title.max' => 'Review Title: The maximum length the title can be is 300 characters.',
+        'review_title.max' => 'Review Title: The maximum length the title can be is 50 characters.',
         
         'review_by.required' => 'Reviewed by: Make sure you\'ve filled out the reviewed by field.',
         'review_by.max' => 'Reviewed By: The maximum length the reviewed by can be is 100 characters.',

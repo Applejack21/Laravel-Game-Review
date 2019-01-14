@@ -30,7 +30,9 @@
         <div class="review-content">
             <a href="{{url('reviewlist')}}">View Reviews</a>
             <a href="{{url('addreviewform')}}">Add Review</a>
+@can('admin', App\Reviews::class)
             <a href="{{url('deletereviewform')}}">Delete Reviews</a>
+@endcan
         </div>
     </li>
 

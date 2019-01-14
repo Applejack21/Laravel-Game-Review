@@ -1,3 +1,34 @@
+/*NOTE: Style code is same as other projects I have done. Most of this probably won't be used*/
+
+
+
+
+
+/*code for view review page */
+#reviewheader{
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:auto;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#reviewtexthead, #reviewcommentshead{
+    -moz-width:200px;
+    -moz-border-bottom:5px solid #e17009;
+    -webkit-width:200px;
+    -webkit-border-bottom:5px solid #e17009;
+    width:250px;
+    border-bottom:5px solid #e17009;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 /* Code to change background colour */
 body {
     background-color:#fefefe;
