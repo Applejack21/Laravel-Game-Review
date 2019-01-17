@@ -2,6 +2,20 @@
 @section('title', 'Reviews - View Review')
 @section('content')
 
+@if (count($errors) > 0)
+    <br>
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            <b>Please check the errors below and correct them:</b>
+            <br>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            <br>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <h1 id="reviewheader">{{$reviews->review_title}}</h1>
 <ul>
 <li>Reviewed On: {{\Carbon\Carbon::parse($reviews->created_at)->format('d/m/Y - H:i')}}</li>
@@ -14,7 +28,6 @@
 <br>
     
 <li>Game Reviewed: {{$reviews->game_title}}</li>
-<br>
 <br>
 </ul>
 
@@ -38,7 +51,9 @@ Overall rating: {{$reviews->review_rating}} out of 5
 <div id="editreview" class="form" style="display:none;">
 <form action="{{url('updatereview')}}" method="POST">
 {{ csrf_field() }}
-<input type="hidden" name="reditreviewby" id="reditreviewby" value="{{Auth::user()->username}}" readonly>
+<br>
+<input type="hidden" name="editreviewid" id="editreviewid" value="{{$reviews->id}}"> 
+<input type="hidden" name="editreviewby" id="editreviewby" value="{{Auth::user()->username}}" readonly>
     
 <label for="edittitle">Review title:</label>
 <input type="text" name="edittitle" id="edittitle" value="{{$reviews->review_title}}">
@@ -63,7 +78,7 @@ Overall rating: {{$reviews->review_rating}} out of 5
     <option id="5" value="5">5/5</option>
 </select>
 <br>
-<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Mark as returned" style="margin-left:50px; margin-top:10px;">
+<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Update Review" style="margin-left:50px; margin-top:10px;">
 </form>
 </div>
 <br>    
@@ -87,19 +102,6 @@ Overall rating: {{$reviews->review_rating}} out of 5
 
 <div id="commentbox">
 <h2 id="reviewaddcomment">Add a comment:</h2>
-@if (count($errors) > 0)
-    <br>
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            <b>Please check the errors below and correct them:</b>
-            <br>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            <br>
-            @endforeach
-        </ul>
-    </div>
-@endif
 <br>
 @if (Auth::check())
 <form action="{{url('addcomment')}}" method="POST">

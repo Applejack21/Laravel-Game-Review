@@ -22,6 +22,8 @@ Route::get('reviewlist', 'ReviewController@reviewList');
 
 Route::get('details/{reviewid}', 'ReviewController@details');
     
+Route::post('updatereview', 'ReviewController@updateReview');
+    
 Route::post('addcomment', 'ReviewController@addComment');
 
 Route::get('addreviewform', 'ReviewController@addForm');

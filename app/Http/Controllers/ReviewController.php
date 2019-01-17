@@ -36,6 +36,43 @@ class ReviewController extends Controller
         return view('review/details', compact('reviews', 'comments'));
     }
     
+    function updateReview (Request $request)
+    {
+        $this->validate($request, [
+            'edittitle' => 'required|max:50',
+            'editreviewby' => 'required|max:100',
+            'editgametitle' => 'required|max:100',
+            'editdescription' => 'required|max:5000',
+            'editrating' => 'required|max:5',
+        ],
+        [
+        'edittitle.required' => 'Review title: Make sure you\'ve filled out the review title field.',
+        'edittitle.max' => 'Review Title: The maximum length the title can be is 50 characters.',
+        
+        'editreviewby.required' => 'Reviewed by: Make sure you\'ve filled out the reviewed by field.',
+        'editreviewby.max' => 'Reviewed By: The maximum length the reviewed by can be is 100 characters.',
+            
+        'editgametitle.required' => 'Game title: Make sure you\'ve filled out the game title field.',
+        'editgametitle.max' => 'Game title: The maximum length the game title can be is 100 characters.',
+            
+        'editdescription.required' => 'Review description: Make sure you\'ve filled out the review description field.',
+        'editdescription.max' => 'Review description: The maximum length the review description can be is 5000 characters.',
+        
+        'editrating.required' => 'Review rating: Make sure you\'ve selected a rating for the game.',
+        'editrating.max' => 'Review rating: The maximum rating you can give a game is 5/5',
+        ]
+        );
+        $update = Reviews::where('id', $request->editreviewid)
+                    ->update([
+                    'review_title' => $request->edittitle,
+                    'review_by' => $request->editreviewby,
+                    'game_title' => $request->editgametitle,
+                    'review_desc' => $request->editdescription,
+                    'review_rating' => $request->editrating,
+                    ]);
+        return redirect()->back();
+    }
+    
     
     function addComment(Request $request)
     {    
