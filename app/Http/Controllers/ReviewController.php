@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reviews;
+use App\Comments;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\LengthAwarePaginator;
+use DB;
 use App\Http\Requests;
 
 class ReviewController extends Controller
@@ -22,9 +26,40 @@ class ReviewController extends Controller
     function details($reviewId)
     {
         $reviews = Reviews::find($reviewId);
-        return view('review/details', ['reviews' => $reviews]);
-    }
+                    
+        $comments = DB::table('comments')
+                    ->select('comment', 'user_username', 'created_at')
+                    ->Where('review_id', '=', $reviewId)
+                    ->orderByDesc("created_at")
+                    ->paginate(5);
         
+        return view('review/details', compact('reviews', 'comments'));
+    }
+    
+    
+    function addComment(Request $request)
+    {    
+        $this->validate($request, [
+            'commentuser' => 'max:10',
+            'comment' => 'required|max:300',
+        ],
+        [
+            'commentuser.required' => 'Username: Make sure you\'ve entered your username.',
+            'commentuser.max' => 'Username: The maximum length your username can be is 10 characters.',
+            
+            'comment.required' => 'Comment: Make sure you\'ve entered your comment.',
+            'comment.max' => 'Comment: The maximum length your comment can be is 300 characters long.'
+        ]
+        );
+        
+        $comment = new Comments();
+        $comment->comment = $request->comment;
+        $comment->user_username	= $request->username;
+        $comment->review_id = $request->reviewid;
+        $comment->save();        
+        return redirect()->back(); 
+    }
+    
     function addForm()
     {
         return view('review/addreview');
@@ -64,7 +99,7 @@ class ReviewController extends Controller
         $review->review_desc = $request->review_desc;
         $review->review_rating = $request->review_rating;
         $review->save();
-        return redirect('homepage');
+        return redirect()->back(); 
     }
     
     function deleteForm()
@@ -76,7 +111,7 @@ class ReviewController extends Controller
     function deleteReviews(Request $request)
     {
         Reviews::destroy($request->reviews);
-        return redirect('deletereviewform');
+        return redirect()->back(); 
     }
     
     function __construct()

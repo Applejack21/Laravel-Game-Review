@@ -1,4 +1,4 @@
-/*NOTE: Style code is same as other projects I have done. Most of this probably won't be used*/
+/* NOTE: Style code is same as other projects I have done. Most of this probably won't be used for this system. */
 
 
 
@@ -17,7 +17,7 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewcommentshead{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
