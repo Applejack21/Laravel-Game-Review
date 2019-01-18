@@ -1,10 +1,16 @@
 @extends('layouts.master')
 @section('title', 'Reviews - Register')
 @section('content')
-
 <h1>Register</h1>
 <br>
 <p>If you already have an account, you can log in <a href="{{'login'}}">here</a></p>
+<div class="message">
+    @foreach (['success'] as $message)
+        @if(Session::has('alert-'.$message))
+            <p class="alert alert-{{$message}}">{{ Session::get('alert-'.$message) }}</p>
+        @endif
+    @endforeach
+</div>
     @if (count($errors) > 0)
 <div>
     <p><b>Please check the errors below and correct them:</b></p>
@@ -14,13 +20,6 @@
             <br>
         @endforeach
     </ul>
-</div>
-<div class="message">
-    @foreach (['success'] as $message)
-        @if(Session::has('alert-'.$message))
-            <p class="alert alert-{{$message}}">{{ Session::get('alert-'.$message) }}</p>
-        @endif
-    @endforeach
 </div>
 @endif
 <br>
@@ -58,4 +57,5 @@ Must be 8-15 characters long and contain at least one uppercase/lowercase letter
 </div>
 <br>
 <br>
+
 @endsection

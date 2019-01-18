@@ -15,7 +15,15 @@
         </ul>
     </div>
 @endif
+<div class="message">
+    @foreach (['success'] as $message)
+        @if(Session::has('alert-'.$message))
+            <p class="alert alert-{{$message}}">{{ Session::get('alert-'.$message) }}</p>
+        @endif
+    @endforeach
+</div>
 
+<div id="reviewinfo">
 <h1 id="reviewheader">{{$reviews->review_title}}</h1>
 <ul>
 <li>Reviewed On: {{\Carbon\Carbon::parse($reviews->created_at)->format('d/m/Y - H:i')}}</li>
@@ -29,17 +37,19 @@
     
 <li>Game Reviewed: {{$reviews->game_title}}</li>
 <br>
+    
+<li>Overall rating: {{$reviews->review_rating}} out of 5</li>
+<br>
 </ul>
+</div>
 
 <div id="reviewtext">
 <h2 id="reviewtexthead">Review Text:</h2>
-<p id="reviewtext">
+<ul>
+<li id="reviewtext">
 {!! nl2br(e($reviews->review_desc)) !!}
-<br>
-<br>
-    
-Overall rating: {{$reviews->review_rating}} out of 5
-</p>
+</li>
+</ul>
 </div>
 
 @if (Auth::user()->username == $reviews->review_by)
@@ -64,7 +74,24 @@ Overall rating: {{$reviews->review_rating}} out of 5
 <br>
     
 <label for="editdescription">Review description:</label>
-<textarea id="editdescription" name="editdescription">{{$reviews->review_desc}}</textarea>
+<textarea id="editdescription" name="editdescription" maxlength="5000">{{$reviews->review_desc}}</textarea>
+<div id="the-count" style="padding-left:270px">
+    <span>Character length:</span>
+    <span id="current">0</span>
+    <span id="maximum">/ 5000</span>
+</div>
+<script>
+$('#editdescription').keyup(function() {
+    
+  var characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
+    
+  current.text(characterCount);
+     
+}); 
+</script>
 <br>
     
 <label for="editrating">Select your rating:</label>
@@ -112,7 +139,8 @@ Overall rating: {{$reviews->review_rating}} out of 5
 <br>
 <label for="comment">Comment:</label>
 <textarea name="comment" id="comment" maxlength="300" placeholder="Enter your comment..."></textarea>
-<div id="the-count" style="padding-left:405px">
+<div id="the-count" style="padding-left:280px">
+    <span>Character length:</span>
     <span id="current">0</span>
     <span id="maximum">/ 300</span>
 </div>
@@ -126,14 +154,7 @@ $('#comment').keyup(function() {
     
   current.text(characterCount);
      
-});
-    
-//limit the datapicker
-$('.datepicker').datepicker({
-    minDate: '-2w', // allow minimum to be 2 weeks behind from today.
-    maxDate: '+2w', // allow any date between today and 2 weeks ahead.
-});    
-
+}); 
 //scripts to display the relevant divs
 function openForm(formName) {
     var i;
@@ -143,24 +164,6 @@ function openForm(formName) {
     }
     document.getElementById(formName).style.display = "block";
 };
-
-$('#addstudentcode').click(function() {
-  $('#additionalstudentcameracode').toggle('medium', function() {
-    // Animation complete.
-  });
-});
-
-$('#addstaffcode').click(function() {
-  $('#additionalstaffcameracode').toggle('medium', function() {
-    // Animation complete.
-  });
-});
-    
-$('#addpgrcode').click(function() {
-  $('#additionalpgrcameracode').toggle('medium', function() {
-    // Animation complete.
-  });
-});
 </script>
 <br>
 <input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Add comment">
@@ -168,8 +171,6 @@ $('#addpgrcode').click(function() {
 @else
 <p>Please <a href="{{url('login')}}">Login</a> to leave a comment</p>
 </div> 
-
-
 </div>
 
 @endif

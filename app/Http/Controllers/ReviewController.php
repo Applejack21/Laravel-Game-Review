@@ -39,7 +39,7 @@ class ReviewController extends Controller
     function updateReview (Request $request)
     {
         $this->validate($request, [
-            'edittitle' => 'required|max:50',
+            'edittitle' => 'required|max:200',
             'editreviewby' => 'required|max:100',
             'editgametitle' => 'required|max:100',
             'editdescription' => 'required|max:5000',
@@ -47,7 +47,7 @@ class ReviewController extends Controller
         ],
         [
         'edittitle.required' => 'Review title: Make sure you\'ve filled out the review title field.',
-        'edittitle.max' => 'Review Title: The maximum length the title can be is 50 characters.',
+        'edittitle.max' => 'Review Title: The maximum length the title can be is 200 characters.',
         
         'editreviewby.required' => 'Reviewed by: Make sure you\'ve filled out the reviewed by field.',
         'editreviewby.max' => 'Reviewed By: The maximum length the reviewed by can be is 100 characters.',
@@ -70,6 +70,7 @@ class ReviewController extends Controller
                     'review_desc' => $request->editdescription,
                     'review_rating' => $request->editrating,
                     ]);
+        $request->session()->flash('alert-success', 'Review successfully updated.');
         return redirect()->back();
     }
     
@@ -93,7 +94,8 @@ class ReviewController extends Controller
         $comment->comment = $request->comment;
         $comment->user_username	= $request->username;
         $comment->review_id = $request->reviewid;
-        $comment->save();        
+        $comment->save();  
+        $request->session()->flash('alert-success', 'Comment added successfully.');
         return redirect()->back(); 
     }
     
@@ -105,7 +107,7 @@ class ReviewController extends Controller
     function addReview(Request $request)
     {
         $this->validate($request, [
-            'review_title' => 'required|max:50',
+            'review_title' => 'required|max:200',
             'review_by' => 'required|max:100',
             'game_title' => 'required|max:100',
             'review_desc' => 'required|max:5000',
@@ -113,7 +115,7 @@ class ReviewController extends Controller
         ],
         [
         'review_title.required' => 'Review title: Make sure you\'ve filled out the review title field.',
-        'review_title.max' => 'Review Title: The maximum length the title can be is 50 characters.',
+        'review_title.max' => 'Review Title: The maximum length the title can be is 200 characters.',
         
         'review_by.required' => 'Reviewed by: Make sure you\'ve filled out the reviewed by field.',
         'review_by.max' => 'Reviewed By: The maximum length the reviewed by can be is 100 characters.',
@@ -136,6 +138,7 @@ class ReviewController extends Controller
         $review->review_desc = $request->review_desc;
         $review->review_rating = $request->review_rating;
         $review->save();
+        $request->session()->flash('alert-success', 'Review added successfully. You can view it by going to Reviews -> View Reviews');
         return redirect()->back(); 
     }
     
@@ -148,6 +151,7 @@ class ReviewController extends Controller
     function deleteReviews(Request $request)
     {
         Reviews::destroy($request->reviews);
+        $request->session()->flash('alert-success', 'Deleted the selected reviews successfully.');
         return redirect()->back(); 
     }
     

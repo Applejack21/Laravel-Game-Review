@@ -16,6 +16,13 @@
         </ul>
     </div>
 @endif
+<div class="message">
+    @foreach (['success'] as $message)
+        @if(Session::has('alert-'.$message))
+            <p class="alert alert-{{$message}}">{{ Session::get('alert-'.$message) }}</p>
+        @endif
+    @endforeach
+</div>
 
 <div>
 <form action="{{url('addreview')}}" method="POST">
@@ -33,7 +40,24 @@
 <br>
     
 <label for="review_desc">Review description:</label>
-<textarea id="review_desc" name="review_desc">{{old('review_desc')}}</textarea>
+<textarea id="review_desc" name="review_desc" maxlength="5000" placeholder="Enter your review...">{{old('review_desc')}}</textarea>
+<div id="the-count" style="padding-left:270px">
+    <span>Character length:</span>
+    <span id="current">0</span>
+    <span id="maximum">/ 5000</span>
+</div>
+<script>
+$('#review_desc').keyup(function() {
+    
+  var characterCount = $(this).val().length,
+      current = $('#current'),
+      maximum = $('#maximum'),
+      theCount = $('#the-count');
+    
+  current.text(characterCount);
+     
+}); 
+</script>
 <br>
     
 <label for="review_rating">Select your rating:</label>
@@ -48,7 +72,7 @@
 </select>
 <br>
     
-<input type="submit" name="submitBtn" value="Add Review">
+<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Add comment">
 </form>
 </div>
 @endsection

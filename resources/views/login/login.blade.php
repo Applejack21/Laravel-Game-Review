@@ -4,14 +4,14 @@
 
 @section('content')
 
-@if (session('loginError'))
-    <div>
-        {{ session('loginError') }}
-    </div>
-@endif
 <h1>Login</h1>
 <br>
 <p>You must be logged in to use the system. You can register with the system <a href="{{'register'}}">here</a></p>
+@foreach (['danger'] as $message)
+        @if(Session::has('alert-'.$message))
+            <p class="alert alert-{{$message}}">{{ Session::get('alert-'.$message) }}</p>
+        @endif
+@endforeach
 <div>
 <form action="{{url('login')}}" method="POST">
 {{ csrf_field() }}
