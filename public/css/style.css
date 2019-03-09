@@ -1,9 +1,3 @@
-/* NOTE: Style code is same as other projects I have done. Most of this probably won't be used for this system. */
-
-
-
-
-
 /*code for view review page */
 #reviewheader{
     -moz-width:200px;
@@ -17,7 +11,7 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
@@ -32,6 +26,10 @@
 #reviewedit {
     margin-top:100px;
 }
+
+
+
+/* NOTE: Style code is same as other projects I have done. Most of this probably won't be used for this system. */
 
 /* Code to change background colour */
 body {
@@ -62,7 +60,7 @@ p#headernotice {
 .navbar-form, navbar-left {
     float:left;
     margin-left:10px;
-    width:640px;
+    width:500px;
     margin-top:5px;
 }
 
@@ -93,7 +91,8 @@ p#headernotice {
 /* Code for the extra buttons on the navigation bar (on the far right on it) */
 #extrabuttons{
     float:right;
-    margin-left: 250px;
+    margin-top: 5px;
+    margin-left: 50px;
 }
 
 /* Code to format the navigation menu */

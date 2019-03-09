@@ -41,7 +41,20 @@
 @else
 <li id="logout"><a href="{{url('login')}}">Login</a></li>
 @endif
-
+        <form action="{{url('searchdetails')}}" class="navbar-form navbar-left" method="GET">
+    <div class="input-group">
+        <input type="text" class="form-control form-rounded" name="searchbar" id="searchbar" maxlength=30 required placeholder="Enter a game title to search...">
+            <span class="input-group-btn">
+                <button class="btn btn-outline-primary search" type="submit">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+    </div>
+</form>
+    
+<div id="extrabuttons">
+<a id="useraccount" class="btn btn-primary search" href="{{url('youraccount')}}"><i class="fas fa-user-circle"></i> Your Account</a>
+</div>
 </ul>
     @show
     <br>

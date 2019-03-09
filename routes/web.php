@@ -17,6 +17,10 @@ Route::group(['middleware' => 'auth'], function() {
 Route::get('/', 'ReviewController@index');
 
 Route::get('homepage', 'ReviewController@index');
+    
+Route::get('searchdetails', 'ReviewController@searchBar');
+    
+Route::get('youraccount', 'ReviewController@yourAccount');
 
 Route::get('reviewlist', 'ReviewController@reviewList');
 

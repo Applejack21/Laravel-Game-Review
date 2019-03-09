@@ -17,6 +17,32 @@ class ReviewController extends Controller
         return view('review/homepage');
     }
     
+    function searchBar(Request $request)
+    {
+        $searchTerm = $request->input('searchbar');
+        
+        if($searchTerm == NULL)
+        {
+            $request->session()->flash('alert-danger', 'There was an error changing your email, please try again.');
+            return view('review/searchdetails', compact('searchTerm'));
+        }
+        else
+        {        
+            $reviewSearch = DB::table('reviews')
+                    ->select('*')
+                    ->where('game_title', 'like', '%'.$searchTerm.'%')
+                    ->orderByDesc('updated_at')
+                    ->paginate(10);
+            return view('review/searchdetails', compact('searchTerm', 'reviewSearch'));
+        }
+        
+    }
+    
+    function yourAccount()
+    {
+        return view('review/youraccount');
+    }
+    
     function reviewList()
     {
         $reviews = Reviews::all();

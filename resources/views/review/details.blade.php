@@ -38,7 +38,7 @@
 <li>Game Reviewed: {{$reviews->game_title}}</li>
 <br>
     
-<li>Overall rating: {{$reviews->review_rating}} out of 5</li>
+<li>Overall Rating: {{$reviews->review_rating}} out of 5</li>
 <br>
 </ul>
 </div>
@@ -65,15 +65,15 @@
 <input type="hidden" name="editreviewid" id="editreviewid" value="{{$reviews->id}}"> 
 <input type="hidden" name="editreviewby" id="editreviewby" value="{{Auth::user()->username}}" readonly>
     
-<label for="edittitle">Review title:</label>
+<label for="edittitle">Edit review title:</label>
 <input type="text" name="edittitle" id="edittitle" value="{{$reviews->review_title}}">
 <br>
     
-<label for="editgametitle">Game title:</label>
+<label for="editgametitle">Edit game title:</label>
 <input type="text" name="editgametitle" id="editgametitle" value="{{$reviews->game_title}}">
 <br>
     
-<label for="editdescription">Review description:</label>
+<label for="editdescription">Edit review description:</label>
 <textarea id="editdescription" name="editdescription" maxlength="5000">{{$reviews->review_desc}}</textarea>
 <div id="the-count" style="padding-left:270px">
     <span>Character length:</span>
@@ -94,9 +94,9 @@ $('#editdescription').keyup(function() {
 </script>
 <br>
     
-<label for="editrating">Select your rating:</label>
+<label for="editrating">Edit your rating:</label>
 <select id="editrating" name="editrating">
-    <option selected disabled>Please select a rating...</option>
+    <option selected disabled>Select your new rating...</option>
     <option id="0" value="0">0/5</option>
     <option id="1" value="1">1/5</option>
     <option id="2" value="2">2/5</option>
@@ -120,7 +120,6 @@ $('#editdescription').keyup(function() {
 <div id="comments" class="alert alert-info" role="alert" style="height: auto;">
 <p>{{$comment->user_username}} - {{\Carbon\Carbon::parse($comment->created_at)->format('d/m/Y - H:i')}}</p>
 <p>{!! nl2br(e($comment->comment)) !!}</p>
-<p></p>
 <br>
 </div>
 @endforeach
