@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use App\Reviews;
 use App\Comments;
 use Illuminate\Pagination\Paginator;
@@ -33,6 +34,7 @@ class ReviewController extends Controller
                     ->where('game_title', 'like', '%'.$searchTerm.'%')
                     ->orderByDesc('updated_at')
                     ->paginate(10);
+            
             return view('review/searchdetails', compact('searchTerm', 'reviewSearch'));
         }
         
@@ -40,7 +42,21 @@ class ReviewController extends Controller
     
     function yourAccount()
     {
-        return view('review/youraccount');
+        $username = Auth::user()->username;
+        
+        $findReviews = DB::table('reviews')
+                ->select('*')
+                ->where('review_by', '=', $username)
+                ->orderByDesc('created_at')
+                ->paginate(5);
+        
+        $findComments = DB::table('comments')
+                ->select('*')
+                ->where('user_username', '=', $username)
+                ->orderByDesc('created_at')
+                ->paginate(5);
+        
+        return view('review/youraccount', compact('findReviews', 'findComments'));
     }
     
     function reviewList()

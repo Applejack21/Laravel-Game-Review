@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #userreviewresults, #usercommentresults{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
