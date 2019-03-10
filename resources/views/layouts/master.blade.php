@@ -13,14 +13,7 @@
 </head>
     
 <body>
-@section('header')
-    
-@if (Auth::check())
-<div class="loggedin"><b>Logged in as:</b> {{Auth::user()->username}}</div>
-@else
-<div class="loggedin"><b>Currently not logged in!</b></div>
-@endif
-    
+@section('header')    
     <p id="headernotice"><b>NOTE: </b>It is recommended to use either: <i>Firefox</i> or <i>Chrome</i> when using this site.</p>
     
 <ul class="nav">
@@ -51,7 +44,11 @@
             </span>
     </div>
 </form>
-    
+@if (Auth::check())
+<div class="loggedin">Welcome back: {{Auth::user()->username}}</div>
+@else
+<div class="loggedin"><b>Currently not logged in!</b></div>
+@endif
 <div id="extrabuttons">
 <a id="useraccount" class="btn btn-primary search" href="{{url('youraccount')}}"><i class="fas fa-user-circle"></i> Your Account</a>
 </div>

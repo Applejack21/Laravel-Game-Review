@@ -11,12 +11,12 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #userreviewresults, #usercommentresults{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #usercontributions{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
     -webkit-border-bottom:5px solid #e17009;
-    width:250px;
+    width:275px;
     border-bottom:5px solid #e17009;
     margin: 0;
     padding: 0;
@@ -92,7 +92,7 @@ p#headernotice {
 #extrabuttons{
     float:right;
     margin-top: 5px;
-    margin-left: 50px;
+    margin-left: 25px;
 }
 
 /* Code to format the navigation menu */
@@ -170,7 +170,8 @@ label {
 /* Code for "loggin in as" section */
 .loggedin {
     padding-left:10px;
-    padding-top: 10px;
+    padding-top:10px;
+    color:#fefefe;
 }
 
 /* Code for the "Previous Page" button */
