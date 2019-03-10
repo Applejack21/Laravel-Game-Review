@@ -30,3 +30,21 @@ $( ".datepicker" ).datepicker();
       }
     });
   } );
+
+//Include the icons next to the accordion2
+    $( function() {
+    var icons = {
+      header: "ui-icon-circle-arrow-e",
+      activeHeader: "ui-icon-circle-arrow-s"
+    };
+    $( "#accordion2" ).accordion({
+      icons: icons
+    });
+    $( "#toggle" ).button().on( "click", function() {
+      if ( $( "#accordion2" ).accordion( "option", "icons" ) ) {
+        $( "#accordion2" ).accordion( "option", "icons", null );
+      } else {
+        $( "#accordion" ).accordion( "option", "icons", icons );
+      }
+    });
+  } );
