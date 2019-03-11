@@ -59,6 +59,20 @@ class ReviewController extends Controller
         return view('review/youraccount', compact('findReviews', 'findComments'));
     }
     
+    function deleteYourComments(Request $request)
+    {
+        $this->validate($request, [
+            'comments' => 'required',
+        ],
+        [
+        'comments.required' => 'Delete comment: Make sure you\'ve ticked a comment to delete first.',
+        ]
+        );
+        Comments::destroy($request->comments);
+        $request->session()->flash('alert-success', 'Deleted the selected comments successfully.');
+        return redirect()->back(); 
+    }
+    
     function reviewList()
     {
         $reviews = Reviews::all();
@@ -189,9 +203,16 @@ class ReviewController extends Controller
         $reviews = Reviews::all();
         return view('review/deletereviews',['reviews' => $reviews]);
     }
-    
+
     function deleteReviews(Request $request)
     {
+        $this->validate($request, [
+            'reviews' => 'required',
+        ],
+        [
+        'reviews.required' => 'Delete review: Make sure you\'ve ticked a review to delete first.',
+        ]
+        );
         Reviews::destroy($request->reviews);
         $request->session()->flash('alert-success', 'Deleted the selected reviews successfully.');
         return redirect()->back(); 

@@ -21,6 +21,8 @@ Route::get('homepage', 'ReviewController@index');
 Route::get('searchdetails', 'ReviewController@searchBar');
     
 Route::get('youraccount', 'ReviewController@yourAccount');
+    
+Route::post('deletecomment', 'ReviewController@deleteYourComments');
 
 Route::get('reviewlist', 'ReviewController@reviewList');
 

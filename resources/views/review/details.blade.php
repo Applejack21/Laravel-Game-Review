@@ -156,6 +156,7 @@ $('#comment').keyup(function() {
   current.text(characterCount);
      
 }); 
+
 //scripts to display the relevant divs
 function openForm(formName) {
     var i;

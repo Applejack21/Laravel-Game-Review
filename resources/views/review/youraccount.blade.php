@@ -60,7 +60,7 @@
 @foreach($findComments as $comments)
 <div class="alert alert-info" role="alert">
 <p>{{\Carbon\Carbon::parse($comments->created_at)->format('d/m/Y')}} - {!! nl2br(e($comments->comment)) !!}</p>
-<p>Review link: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
+<p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
 </div>
 @endforeach
     {{ $findComments->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
@@ -79,34 +79,46 @@
 @if(count($findReviews)>0)
 <h6><u>Ordered by most recent review first:</u></h6>
 
-@foreach ($findReviews as $reviews)
-<a id="hyperlink" href="{{url('details/'.$reviews->id)}}">
-<div class="alert alert-info" role="alert">
-<p>{{\Carbon\Carbon::parse($reviews->created_at)->format('d/m/Y')}} - {{$reviews->review_title}}</p>
-</div>
-</a>
-@endforeach
+<form action="{{url('deletereviews')}}" method="POST">
+    {{ csrf_field() }}
+    @foreach ($findReviews as $reviews)
+        <div class="alert alert-info" role="alert" style="width:500px">
+            <p>{{$reviews->review_title}}</p>
+            <input type="checkbox" value="{{$reviews->id}}" name="reviews[]" id="reviews"/>
+        </div>
+    @endforeach
+<br>
+<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Delete selected reviews">
+</form>
 {{ $findReviews->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
 @else
     <p>You have made 0 reviews, you can make one <a id="hyperlink" href="{{url('addreviewform')}}">here</a>.</p>
 @endif
 </div>
-    <h3>Delete Comments</h3>
+    
+    <h3>Delete Comments</h3>      
 <div>
 @if(count($findComments)>0)
-<h6><u>Ordered by most recent comment first:</u></h6>
-
-@foreach($findComments as $comments)
-<div class="alert alert-info" role="alert">
-<p>{{\Carbon\Carbon::parse($comments->created_at)->format('d/m/Y')}} - {!! nl2br(e($comments->comment)) !!}</p>
-<p>Review link: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
-</div>
-@endforeach
-    {{ $findComments->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
+<h6><u>Ordered by most recent comment first:</u></h6>  
+    
+<form action="{{url('deletecomment')}}" method="POST">
+    {{ csrf_field() }}
+    @foreach ($findComments as $comments)
+        <div class="alert alert-info" role="alert" style="width:500px">
+            <p>{!! nl2br(e($comments->comment)) !!}</p>
+            <p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
+            <input type="checkbox" value="{{$comments->id}}" name="comments[]" id="comments"/>
+        </div>
+    @endforeach
+<br>
+<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Delete selected comments">
+</form>
+{{ $findComments->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
 @else
     <p>You have made 0 comments, you can make one by viewing different reviews on the website <a id="hyperlink" href="{{url('reviewlist')}}">here</a>.</p>
 @endif
 </div>
+    
 <script>
 $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
     
