@@ -71,9 +71,18 @@
 </div>
 <br>
 
+<h4 id="usergraphsheading">Contributions In Graphs:</h4>
+<p>Below shows the amount of reviews/comments you have made this week.</p>
+<div id="accordion2">
+    <h3>Your Reviews:</h3>
+<div id="reviewsChart">
+    <canvas id="myChart" style="height:40vh; width:80vw"></canvas>
+</div>
+</div>
+
 <h2 id="userdeleteitems">Delete Items:</h2>
 <br>
-<div id="accordion2">
+<div id="accordion3">
     <h3>Delete Reviews</h3>
 <div>
 @if(count($findReviews)>0)
@@ -118,7 +127,10 @@
     <p>You have made 0 comments, you can make one by viewing different reviews on the website <a id="hyperlink" href="{{url('reviewlist')}}">here</a>.</p>
 @endif
 </div>
-    
+</div>
+<br>
+<br>
+  
 <script>
 $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
     
@@ -127,8 +139,10 @@ $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
             $("#accordion > div").accordion({ header: "h3", collapsible: true });
         })
     })(jQuery);
-
-$("#accordion2").accordion({ header: "h3", active: false, collapsible: true });
+    
+$("#accordion2").accordion({ header: "h3", active: false, collapsible: true }); 
+$("#accordion3").accordion({ header: "h3", active: false, collapsible: true });
 </script>
+<script src="{{asset('js/userCharts.js')}}"></script>
 
 @endsection

@@ -11,7 +11,7 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #usercontributions, #userdeleteitems{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #usercontributions, #userdeleteitems, #usergraphsheading{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
@@ -26,8 +26,6 @@
 #reviewedit {
     margin-top:100px;
 }
-
-
 
 /* NOTE: Style code is same as other projects I have done. Most of this probably won't be used for this system. */
 

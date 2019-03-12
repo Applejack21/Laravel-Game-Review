@@ -48,3 +48,21 @@ $( ".datepicker" ).datepicker();
       }
     });
   } );
+
+//Include the icons next to the accordion3
+    $( function() {
+    var icons = {
+      header: "ui-icon-circle-arrow-e",
+      activeHeader: "ui-icon-circle-arrow-s"
+    };
+    $( "#accordion3" ).accordion({
+      icons: icons
+    });
+    $( "#toggle" ).button().on( "click", function() {
+      if ( $( "#accordion3" ).accordion( "option", "icons" ) ) {
+        $( "#accordion3" ).accordion( "option", "icons", null );
+      } else {
+        $( "#accordion" ).accordion( "option", "icons", icons );
+      }
+    });
+  } );
