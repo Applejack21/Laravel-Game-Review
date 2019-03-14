@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use Auth;
 use App\Reviews;
 use App\Comments;
@@ -45,18 +46,29 @@ class ReviewController extends Controller
         $username = Auth::user()->username;
         
         $findReviews = DB::table('reviews')
-                ->select('*')
                 ->where('review_by', '=', $username)
                 ->orderByDesc('created_at')
                 ->paginate(5);
         
         $findComments = DB::table('comments')
-                ->select('*')
                 ->where('user_username', '=', $username)
                 ->orderByDesc('created_at')
                 ->paginate(5);
         
         return view('review/youraccount', compact('findReviews', 'findComments'));
+    }
+    
+    function userChartData()
+    {
+        $username = Auth::user()->username;
+        
+        $today = \Carbon\Carbon::now()->format('Y-m-d');
+        
+        $result = DB::table('reviews')
+                ->where('review_by', '=', $username)
+                ->get();
+
+        return response()->json($result);
     }
     
     function deleteYourComments(Request $request)

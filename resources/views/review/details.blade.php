@@ -114,6 +114,7 @@ $('#editdescription').keyup(function() {
 <br>    
 </div>
 @endif
+<br>
 
 <div id="reviewcomment">
 <h2 id="reviewcommentshead">Comments:</h2>

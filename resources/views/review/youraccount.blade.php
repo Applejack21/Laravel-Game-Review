@@ -4,7 +4,6 @@
 
     <h1>Your Account</h1>
 <p>This page shows your different interactions with the system itself, as well as change inforation about your account.</p>
-<br>
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
@@ -30,7 +29,6 @@
         @endif
     @endforeach
 </div>
-
 <h2 id="usercontributions">Your Contributions:</h2>
 <br>
 
@@ -72,11 +70,11 @@
 <br>
 
 <h4 id="usergraphsheading">Contributions In Graphs:</h4>
-<p>Below shows the amount of reviews/comments you have made this week.</p>
+<p>Below is a summary of your reviews (by rating) and comments made compared to the previous week.</p>
 <div id="accordion2">
     <h3>Your Reviews:</h3>
 <div id="reviewsChart">
-    <canvas id="myChart" style="height:40vh; width:80vw"></canvas>
+    <canvas id="userReviewChart" style="height:40vh; width:80vw"></canvas>
 </div>
 </div>
 
@@ -130,7 +128,8 @@
 </div>
 <br>
 <br>
-  
+
+
 <script>
 $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
     
@@ -143,6 +142,5 @@ $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
 $("#accordion2").accordion({ header: "h3", active: false, collapsible: true }); 
 $("#accordion3").accordion({ header: "h3", active: false, collapsible: true });
 </script>
-<script src="{{asset('js/userCharts.js')}}"></script>
-
+<script src="{{asset('js/userCharts.js')}}"></script> 
 @endsection
