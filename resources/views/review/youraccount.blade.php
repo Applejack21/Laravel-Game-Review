@@ -3,7 +3,7 @@
 @section('content')
 
     <h1>Your Account</h1>
-<p>This page shows your different interactions with the system itself, as well as change inforation about your account.</p>
+<p>This page allows you to see your interactions. As well as allowing you to delete interactions.</p>
 @if (count($errors) > 0)
     <div class="alert alert-danger" role="alert">
         <ul>
