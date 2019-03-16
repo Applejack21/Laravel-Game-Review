@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
 use App\Reviews;
+use Response;
 use App\Comments;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -25,7 +26,7 @@ class ReviewController extends Controller
         
         if($searchTerm == NULL)
         {
-            $request->session()->flash('alert-danger', 'There was an error changing your email, please try again.');
+            $request->session()->flash('alert-danger', 'The search term is empty. Please try again.');
             return view('review/searchdetails', compact('searchTerm'));
         }
         else
@@ -57,20 +58,44 @@ class ReviewController extends Controller
         
         return view('review/youraccount', compact('findReviews', 'findComments'));
     }
-    
+        
     function userChartData()
     {
         $username = Auth::user()->username;
         
-        $today = \Carbon\Carbon::now()->format('Y-m-d');
-        
         $result = DB::table('reviews')
+                ->select('review_rating')
                 ->where('review_by', '=', $username)
                 ->get();
 
         return response()->json($result);
     }
     
+    function userChartDataComments()
+    {
+        $username = Auth::user()->username;
+        
+        $thisweek = Carbon::now();
+        $lastweek = Carbon::now()->subWeek();
+        $twoweeksago = Carbon::now()->subWeek(2);
+                
+        $result1 = DB::table('comments')
+                ->select('id')
+                ->where('user_username', '=', $username)
+                ->where('created_at', '<=', $thisweek)
+                ->where('created_at', '>=', $lastweek)
+                ->get();
+        
+         $result2 = DB::table('comments')
+                ->select('id')
+                ->where('user_username', '=', $username)
+                ->where('created_at', '<=', $lastweek)
+                ->where('created_at', '>=', $twoweeksago)
+                ->get();
+        
+        return Response::json($result1);
+    }
+        
     function deleteYourComments(Request $request)
     {
         $this->validate($request, [

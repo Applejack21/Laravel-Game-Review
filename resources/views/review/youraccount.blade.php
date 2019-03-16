@@ -70,11 +70,15 @@
 <br>
 
 <h4 id="usergraphsheading">Contributions In Graphs:</h4>
-<p>Below is a summary of your reviews (by rating) and comments made compared to the previous week.</p>
+<p>Below is a summary of your reviews (by rating) and the amount of comments you've made this week</p>
 <div id="accordion2">
     <h3>Your Reviews:</h3>
 <div id="reviewsChart">
     <canvas id="userReviewChart" style="height:40vh; width:80vw"></canvas>
+</div>
+    <h3>Your Comments:</h3>
+<div id="commentsChart">
+    <canvas id="userCommentChart" style="height:40vh; width:80vw"></canvas>
 </div>
 </div>
 
@@ -142,5 +146,6 @@ $("#accordion").accordion({ header: "h3", collapsible: true, active: false });
 $("#accordion2").accordion({ header: "h3", active: false, collapsible: true }); 
 $("#accordion3").accordion({ header: "h3", active: false, collapsible: true });
 </script>
-<script src="{{asset('js/userCharts.js')}}"></script> 
+<script src="{{asset('js/userCharts.js')}}"></script>
+<script src="{{asset('js/userChartsComments.js')}}"></script>
 @endsection
