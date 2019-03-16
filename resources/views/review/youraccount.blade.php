@@ -47,7 +47,7 @@
 @endforeach
     {{ $findReviews->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
 @else
-    <p>You have made 0 comments, you can make one by viewing different reviews on the website <a id="hyperlink" href="{{url('reviewlist')}}">here</a>.</p>
+    <p>You have made 0 reviews, you can make one <a id="hyperlink" href="{{url('addreviewform')}}">here</a>.</p>
 @endif
 </div>
     <h3>Your Comments</h3>
