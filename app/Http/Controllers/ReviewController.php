@@ -107,7 +107,8 @@ class ReviewController extends Controller
         );
         Comments::destroy($request->comments);
         $request->session()->flash('alert-success', 'Deleted the selected comments successfully.');
-        return view('review/yourdetails');
+        
+        return redirect()->back();
     }
     
     function reviewList()
