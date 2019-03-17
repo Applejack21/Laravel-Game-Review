@@ -171,6 +171,32 @@ class ReviewController extends Controller
     
     function addComment(Request $request)
     {    
+        //get info from the comment form
+        $reviewid = $request->reviewid;
+        $usernamecomment = $request->username;
+        $actualcomment = $request->comment;
+        
+        //find the username of the reviewer + title of the review
+        $findUsername = DB::table('reviews')
+                    ->select('review_by', 'review_title')
+                    ->where('id', '=', $reviewid)
+                    ->get();
+        
+        //store said username
+        $storeUsername = $findUsername[0]->review_by;
+        
+        //find their email address and username in the users table
+        $findInfo = DB::table('users')
+                    ->select('username', 'email')
+                    ->where('username', '=', $storeUsername)
+                    ->get();
+        
+        //store review title, username, and their email address
+        $reviewerTitle = $$findUsername[0]->review_title;
+        $reviewerUsername = $findInfo[0]->username;
+        $reviewerEmail = $findInfo[0]->email;
+        
+        
         $this->validate($request, [
             'commentuser' => 'max:10',
             'comment' => 'required|max:300',
@@ -185,12 +211,12 @@ class ReviewController extends Controller
         );
         
         $comment = new Comments();
-        $comment->comment = $request->comment;
-        $comment->user_username	= $request->username;
-        $comment->review_id = $request->reviewid;
+        $comment->comment = $actualcomment;
+        $comment->user_username	= $usernamecomment;
+        $comment->review_id = $reviewid;
         $comment->save();  
         $request->session()->flash('alert-success', 'Comment added successfully.');
-        return redirect()->back(); 
+        return view('review/details', compact($reviewerUsername, $reviewerEmail));
     }
     
     function addForm()

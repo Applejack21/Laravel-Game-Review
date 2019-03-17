@@ -115,7 +115,6 @@ $('#editdescription').keyup(function() {
 </div>
 @endif
 <br>
-
 <div id="reviewcomment">
 <h2 id="reviewcommentshead">Comments:</h2>
 <u><p>Sorted by recent first:</p></u>

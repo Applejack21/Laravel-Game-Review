@@ -25,7 +25,7 @@ var myChart = new Chart(ctx,
             data: [commentLength],
             backgroundColor: 
             [
-                '#ff0000',
+                '#66cc33',
             ],
         }]
     },
