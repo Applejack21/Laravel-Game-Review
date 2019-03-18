@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Auth;
 use App\Reviews;
-use Response;
 use App\Comments;
+use Mail;
+use View;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 use DB;
-use App\Http\Requests;
+use Validator;
 
 class ReviewController extends Controller
 {
@@ -187,16 +190,18 @@ class ReviewController extends Controller
         
         //find their email address and username in the users table
         $findInfo = DB::table('users')
-                    ->select('username', 'email')
+                    ->select('username', 'email', 'first_name', 'last_name')
                     ->where('username', '=', $storeUsername)
                     ->get();
         
         //store review title, username, and their email address
-        $reviewerTitle = $$findUsername[0]->review_title;
+        $reviewerTitle = $findUsername[0]->review_title;
         $reviewerUsername = $findInfo[0]->username;
         $reviewerEmail = $findInfo[0]->email;
+        $reviewerFirstName = $findInfo[0]->first_name;
+        $reviewerLastName = $findInfo[0]->last_name;
         
-        
+        //validate the actual comment that the user is submitting
         $this->validate($request, [
             'commentuser' => 'max:10',
             'comment' => 'required|max:300',
@@ -209,14 +214,33 @@ class ReviewController extends Controller
             'comment.max' => 'Comment: The maximum length your comment can be is 300 characters long.'
         ]
         );
+        // Email the reviewer about the comment
+        $data = array(
+            'comment' => $actualcomment,
+            'reviewertitle' => $reviewerTitle,
+            'reviewerUsername' => $reviewerUsername,
+            'reviewerEmail' => $reviewerEmail,
+            'reviewerFirstName' => $reviewerFirstName,
+            'reviewerLastName' => $reviewerLastName
+        );
+        // Path or name to the blade template to be rendered
+        $template_path = 'email.email_receivedcomment';
         
+        Mail::send($template_path, $data, function($message) use($data, $actualcomment, $reviewerTitle, $reviewerUsername, $reviewerEmail, $reviewerFirstName, $reviewerLastName) {
+            //Set the receiver and the subject of the mail.
+            $message->to($reviewerEmail, $reviewerFirstName.' '.$reviewerLastName)->subject('New Comment - Review System');
+            //Set the sender
+            $message->from('reviewsystem@noreply', 'Review System');
+        });
+        
+        //store comment into database, and redirect back to the review with an alert
         $comment = new Comments();
         $comment->comment = $actualcomment;
         $comment->user_username	= $usernamecomment;
         $comment->review_id = $reviewid;
         $comment->save();  
         $request->session()->flash('alert-success', 'Comment added successfully.');
-        return view('review/details', compact($reviewerUsername, $reviewerEmail));
+        return redirect()->back(); 
     }
     
     function addForm()
