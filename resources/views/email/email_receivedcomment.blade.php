@@ -43,9 +43,9 @@
     	<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">You can view this comment via the link below:<br><br></td>
     </tr>
     <tr>
-        <td><a href="{{url('details/'.$reviewid)}}" style="background-color:#2e6e9e;border:1px solid #EB7035;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:auto;-webkit-text-size-adjust:none;mso-hide:all;">{{$reviewertitle}}</a></td>
+        <td><a href="{{url('details/'.$reviewid).'#reviewcomment'}}" style="background-color:#2e6e9e;border:1px solid #2e6e9e;border-radius:3px;color:#fefefe;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:auto;-webkit-text-size-adjust:none;mso-hide:all;">{{$reviewertitle}}</a></td>
     </tr>
-
+    <br>
 	<tr>
     	<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">Kind regards,</td>
 	</tr>

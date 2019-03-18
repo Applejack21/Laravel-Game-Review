@@ -58,7 +58,7 @@
 @foreach($findComments as $comments)
 <div class="alert alert-info" role="alert">
 <p>{{\Carbon\Carbon::parse($comments->created_at)->format('d/m/Y')}} - {!! nl2br(e($comments->comment)) !!}</p>
-<p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
+<p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#reviewcomment'}}">here</a></p>
 </div>
 @endforeach
     {{ $findComments->appends(Request::except('page'))->links('vendor.pagination.bootstrap-4') }}
@@ -117,7 +117,7 @@
     @foreach ($findComments as $comments)
         <div class="alert alert-info" role="alert" style="width:500px">
             <p>{!! nl2br(e($comments->comment)) !!}</p>
-            <p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#commentbox'}}">here</a></p>
+            <p>Link to review: <a id="hyperlink" href="{{url('details/'.$comments->review_id).'#reviewcomment'}}">here</a></p>
             <input type="checkbox" value="{{$comments->id}}" name="comments[]" id="comments"/>
         </div>
     @endforeach
