@@ -7,6 +7,8 @@ use App\Comments;
 use Mail;
 use View;
 use App\Http\Requests;
+use Auth;
+use Response;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
@@ -109,7 +111,7 @@ class ReviewController extends Controller
         ]
         );
         Comments::destroy($request->comments);
-        $request->session()->flash('alert-success', 'Deleted the selected comments successfully.');
+        $request->session()->flash('alert-success', 'Deleted the selected comment(s) successfully.');
         
         return redirect()->back();
     }
@@ -217,6 +219,8 @@ class ReviewController extends Controller
         // Email the reviewer about the comment
         $data = array(
             'comment' => $actualcomment,
+            'commenterusername' => $usernamecomment,
+            'reviewid' => $reviewid,
             'reviewertitle' => $reviewerTitle,
             'reviewerUsername' => $reviewerUsername,
             'reviewerEmail' => $reviewerEmail,
@@ -226,7 +230,7 @@ class ReviewController extends Controller
         // Path or name to the blade template to be rendered
         $template_path = 'email.email_receivedcomment';
         
-        Mail::send($template_path, $data, function($message) use($data, $actualcomment, $reviewerTitle, $reviewerUsername, $reviewerEmail, $reviewerFirstName, $reviewerLastName) {
+        Mail::send($template_path, $data, function($message) use($data, $actualcomment, $usernamecomment, $reviewid, $reviewerTitle, $reviewerUsername, $reviewerEmail, $reviewerFirstName, $reviewerLastName) {
             //Set the receiver and the subject of the mail.
             $message->to($reviewerEmail, $reviewerFirstName.' '.$reviewerLastName)->subject('New Comment - Review System');
             //Set the sender
@@ -302,7 +306,7 @@ class ReviewController extends Controller
         ]
         );
         Reviews::destroy($request->reviews);
-        $request->session()->flash('alert-success', 'Deleted the selected reviews successfully.');
+        $request->session()->flash('alert-success', 'Deleted the selected review(s) successfully.');
         return redirect()->back(); 
     }
     

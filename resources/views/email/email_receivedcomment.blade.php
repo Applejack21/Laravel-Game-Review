@@ -1,10 +1,11 @@
+<html>
 <body bgcolor="#F8F8F8">
 
 <table width=691px style="margin-left:5px;" border="0" cellpadding="0" cellspacing="0">
 	<tbody>
     	
         <tr>
-        	<td style="padding-left:14px;padding-bottom:17px;"><span style="font-size:35px;font-family:Segoe UI, Arial, Calibri, sans-serif;font-weight:bold;"> <span style="color:#2e6e9e;">Hello, </span><br></span>
+        	<td style="padding-left:14px;padding-bottom:17px;"><span style="font-size:35px;font-family:Segoe UI, Arial, Calibri, sans-serif;font-weight:bold;"> <span style="color:#2e6e9e;">Hello, {{$reviewerUsername}} </span><br></span>
 			</td>
 		</tr>
         <tr>
@@ -19,17 +20,21 @@
 
 <table width=664px border="0" cellpadding="0" cellspacing="0">
 		<tr>
-		<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">You're receiving this email because someone has recently left a comment on your review. Information about that can be seen below.<br><br></td>
+		<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">You're receiving this email because someone has recently left a comment on one of your reviews. Information about that can be seen below.<br><br></td>
 	</tr> 
 <br>
-<table width="500px">        
+<table width="auto">        
      <tr>
-    	<td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="200px">Username:</td> 
-        <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="410px"></td>
+        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Review Title:</td>
+        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{{$reviewertitle}}</td>
+    </tr>
+    <tr>
+    	<td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Commenter's Username:</td> 
+        <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{{$commenterusername}}</td>
  	</tr>
     <tr>
-        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="150px">Comment</td> 
-        <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="410px"></td>
+        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Comment</td> 
+        <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{!! nl2br(e($comment)) !!}</td>
     </tr>
     </table>
 <table>
@@ -37,9 +42,9 @@
     <tr>
     	<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">You can view this comment via the link below:<br><br></td>
     </tr>
-        <tr>
-            <td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top"><br><br></td>
-        </tr>
+    <tr>
+        <td><a href="{{url('details/'.$reviewid)}}" style="background-color:#2e6e9e;border:1px solid #EB7035;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:auto;-webkit-text-size-adjust:none;mso-hide:all;">{{$reviewertitle}}</a></td>
+    </tr>
 
 	<tr>
     	<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">Kind regards,</td>
@@ -49,4 +54,4 @@
     <td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">Review System<br><br></td>
     </tr>
 </table>
-	</table>  
+</html>
