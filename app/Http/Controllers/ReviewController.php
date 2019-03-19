@@ -37,8 +37,8 @@ class ReviewController extends Controller
         else
         {        
             $reviewSearch = DB::table('reviews')
-                    ->select('*')
                     ->where('game_title', 'like', '%'.$searchTerm.'%')
+                    ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
                     ->orderByDesc('updated_at')
                     ->paginate(10);
             
@@ -216,6 +216,8 @@ class ReviewController extends Controller
             'comment.max' => 'Comment: The maximum length your comment can be is 300 characters long.'
         ]
         );
+        if ($reviewerUsername != $usernamecomment)
+        {
         // Email the reviewer about the comment
         $data = array(
             'comment' => $actualcomment,
@@ -236,6 +238,7 @@ class ReviewController extends Controller
             //Set the sender
             $message->from('reviewsystem@noreply', 'Review System');
         });
+        }
         
         //store comment into database, and redirect back to the review with an alert
         $comment = new Comments();
