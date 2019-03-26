@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use Mail;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +34,12 @@ class LoginController extends Controller
     }
     function register(Request $request)
     {
+        $firstname = $request->first_name;
+        $lastname = $request->last_name;
+        $username = $request->username;
+        $email = $request->email;
+        $password = $request->password;
+        
         $this->validate($request, [
             'first_name' => 'required|max:191',
             'last_name' => 'required|max:191',
@@ -61,16 +68,16 @@ class LoginController extends Controller
             'password.regex' => 'Password: Your password needs to contain at least one uppercase/lowercase letters and one number.',
             'password.confirmed' => 'Password: Make sure the passwords match each other.',
         ]
-        );
-        
+        );        
         $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->username = $request->username;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
+        $user->first_name = $firstname;
+        $user->last_name = $lastname;
+        $user->username = $username;
+        $user->email = $email;
+        $user->password = Hash::make($password);
         $user->role = 2;
         $user->save();
+        
         $request->session()->flash('alert-success', "Thank you for registering. Please login through the link above.");
         return redirect('register');
     }

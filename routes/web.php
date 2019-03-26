@@ -12,15 +12,23 @@
 */
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['auth' => 'verify'], function() {
     
 Route::get('/', 'ReviewController@index');
+
+Route::get('home', 'ReviewController@index');
 
 Route::get('homepage', 'ReviewController@index');
     
 Route::get('searchdetails', 'ReviewController@searchBar');
     
 Route::get('youraccount', 'ReviewController@yourAccount');
+    
+Route::get('reviewsjson', 'ReviewController@userChartData');
+    
+Route::get('commentsjson', 'ReviewController@userChartDataComments');
+        
+Route::post('deletecomment', 'ReviewController@deleteYourComments');
 
 Route::get('reviewlist', 'ReviewController@reviewList');
 
@@ -48,3 +56,5 @@ Route::get('logout', 'LoginController@logout');
 Route::get('register', 'LoginController@registerForm');
 
 Route::post('register', 'LoginController@register');
+
+Auth::routes(['verify' => true]);

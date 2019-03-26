@@ -72,7 +72,7 @@ $('#review_desc').keyup(function() {
 </select>
 <br>
     
-<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Add comment">
+<input type="submit" class="btn btn-primary previouspage" name="submitBtn" value="Add review">
 </form>
 </div>
 @endsection

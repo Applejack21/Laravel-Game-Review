@@ -96,7 +96,9 @@ $('#editdescription').keyup(function() {
     
 <label for="editrating">Edit your rating:</label>
 <select id="editrating" name="editrating">
-    <option selected disabled>Select your new rating...</option>
+    <option id="currentrating" value="{{$reviews->review_rating}}" selected>{{$reviews->review_rating}}/5</option>
+    <option disabled>Current rating above</option>
+    <option disabled>Choose new rating below</option>
     <option id="0" value="0">0/5</option>
     <option id="1" value="1">1/5</option>
     <option id="2" value="2">2/5</option>
@@ -112,7 +114,7 @@ $('#editdescription').keyup(function() {
 <br>    
 </div>
 @endif
-
+<br>
 <div id="reviewcomment">
 <h2 id="reviewcommentshead">Comments:</h2>
 <u><p>Sorted by recent first:</p></u>
@@ -154,6 +156,7 @@ $('#comment').keyup(function() {
   current.text(characterCount);
      
 }); 
+
 //scripts to display the relevant divs
 function openForm(formName) {
     var i;

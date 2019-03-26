@@ -2,7 +2,10 @@
 @section('title', 'Reviews - Register')
 @section('content')
 <h1>Register</h1>
-<br>
+<div class="alert alert-info" role="alert">
+<p>You will need to verify your email once you've registered.</p>
+<p>Please check your spam folder if you don't see the email in your inbox.</p>
+</div>
 <p>If you already have an account, you can log in <a href="{{'login'}}">here</a></p>
 <div class="message">
     @foreach (['success'] as $message)

@@ -11,12 +11,12 @@
     overflow: hidden;
 }
 
-#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults{
+#reviewtexthead, #reviewedithead, #reviewcommentshead, #reviewaddcomment, #reviewresults, #usercontributions, #userdeleteitems, #usergraphsheading{
     -moz-width:200px;
     -moz-border-bottom:5px solid #e17009;
     -webkit-width:200px;
     -webkit-border-bottom:5px solid #e17009;
-    width:250px;
+    width:275px;
     border-bottom:5px solid #e17009;
     margin: 0;
     padding: 0;
@@ -26,8 +26,6 @@
 #reviewedit {
     margin-top:100px;
 }
-
-
 
 /* NOTE: Style code is same as other projects I have done. Most of this probably won't be used for this system. */
 
@@ -92,7 +90,7 @@ p#headernotice {
 #extrabuttons{
     float:right;
     margin-top: 5px;
-    margin-left: 50px;
+    margin-left: 25px;
 }
 
 /* Code to format the navigation menu */
@@ -170,7 +168,8 @@ label {
 /* Code for "loggin in as" section */
 .loggedin {
     padding-left:10px;
-    padding-top: 10px;
+    padding-top:10px;
+    color:#fefefe;
 }
 
 /* Code for the "Previous Page" button */
