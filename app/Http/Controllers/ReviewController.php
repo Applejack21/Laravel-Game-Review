@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Reviews;
+use Response;
 use App\Comments;
 use Mail;
 use View;
@@ -66,11 +66,22 @@ class ReviewController extends Controller
 
         return response()->json($result);
     }
+        
+    function userChartData()
+    {
+        $username = Auth::user()->username;
+        
+        $result = DB::table('reviews')
+                ->select('review_rating')
+                ->where('review_by', '=', $username)
+                ->get();
+        return response()->json($result);
+    }
     
     function userChartDataComments()
     {
         $username = Auth::user()->username;
-        
+       
         $thisweek = Carbon::now();
         $lastweek = Carbon::now()->subWeek();
         $twoweeksago = Carbon::now()->subWeek(2);
@@ -293,7 +304,7 @@ class ReviewController extends Controller
     function deleteReviews(Request $request)
     {
         $reviewid = $request->reviews;
-        
+       
         $this->validate($request, [
             'reviews' => 'required',
         ],
