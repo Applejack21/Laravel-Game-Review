@@ -29,11 +29,11 @@
         <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{{$reviewertitle}}</td>
     </tr>
     <tr>
-    	<td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Commenter's Username:</td> 
+    	<td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Comment By:</td> 
         <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{{$commenterusername}}</td>
  	</tr>
     <tr>
-        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Comment</td> 
+        <td style="background-color:#E5E4E2;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;font-weight:bold;padding:2px;padding-left:5px;" width="auto">Comment:</td> 
         <td style="background-color:#EFEEEC;font-family:Segoe UI, Arial, Calibri, sans-serif;font-size: 15px;padding:2px;padding-left:5px;" width="auto">{!! nl2br(e($comment)) !!}</td>
     </tr>
     </table>
@@ -43,7 +43,7 @@
     	<td style="font-family:Segoe UI, Arial, Calibri, sans-serif; font-size: 15px; color: #000000; line-height: 21px;" align="left" valign="top">You can view this comment via the link below:<br><br></td>
     </tr>
     <tr>
-        <td><a href="{{url('details/'.$reviewid).'#reviewcomment'}}" style="background-color:#2e6e9e;border:1px solid #2e6e9e;border-radius:3px;color:#fefefe;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:auto;-webkit-text-size-adjust:none;mso-hide:all;">{{$reviewertitle}}</a></td>
+        <td><a href="{{url('details/'.$reviewid).'#reviewcomment'}}" style="background-color:#2e6e9e;border:5px solid #2e6e9e;border-radius:3px;color:#fefefe;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;width:auto;-webkit-text-size-adjust:none;mso-hide:all;">{{$reviewertitle}}</a></td>
     </tr>
     <br>
 	<tr>

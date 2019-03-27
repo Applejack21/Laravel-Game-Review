@@ -5,13 +5,11 @@
 <h1>List of Reviews</h1>
 
 @foreach ($reviews as $review)
-        <p>
-            <i class="fa fa-caret-right"></i>
-            <a href="{{url('details/'.$review->id)}}">{{$review->review_title}} </a>
-            <br>
-            Reviewed By: {{$review->review_by}}
-            <br>
-            Date Posted: {{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}}
-        </p>
+<a id="hyperlink" href="{{url('details/'.$review->id)}}">
+<div class="alert alert-info" role="alert">
+<p>{{\Carbon\Carbon::parse($review->created_at)->format('d/m/Y')}} - {{$review->review_title}}</p>
+<p>Reviewed By: {{$review->review_by}}</p>
+</div>
+</a>
 @endforeach
 @endsection

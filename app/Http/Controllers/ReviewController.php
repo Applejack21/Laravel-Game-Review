@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Reviews;
 use App\Comments;
 use Mail;
@@ -27,24 +26,21 @@ class ReviewController extends Controller
     
     function searchBar(Request $request)
     {
-        $searchTerm = $request->input('searchbar');
-        
-        if($searchTerm == NULL)
-        {
-            $request->session()->flash('alert-danger', 'The search term is empty. Please try again.');
-            return view('review/searchdetails', compact('searchTerm'));
-        }
-        else
-        {        
-            $reviewSearch = DB::table('reviews')
-                    ->where('game_title', 'like', '%'.$searchTerm.'%')
-                    ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
-                    ->orderByDesc('updated_at')
-                    ->paginate(10);
+        $searchTerm = $request->input('searchbar'); 
+      
+        $reviewSearch = DB::table('reviews')
+                 ->where('game_title', 'like', '%'.$searchTerm.'%')
+                 ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
+                 ->orderByDesc('updated_at')
+                 ->paginate(10);
+      
+        $reviewSearch = DB::table('reviews')
+                 ->where('game_title', 'like', '%'.$searchTerm.'%')
+                 ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
+                 ->orderByDesc('updated_at')
+                 ->paginate(10);
             
-            return view('review/searchdetails', compact('searchTerm', 'reviewSearch'));
-        }
-        
+        return view('review/searchdetails', compact('searchTerm', 'reviewSearch'));
     }
     
     function yourAccount()
@@ -75,11 +71,22 @@ class ReviewController extends Controller
 
         return response()->json($result);
     }
+        
+    function userChartData()
+    {
+        $username = Auth::user()->username;
+        
+        $result = DB::table('reviews')
+                ->select('review_rating')
+                ->where('review_by', '=', $username)
+                ->get();
+        return response()->json($result);
+    }
     
     function userChartDataComments()
     {
         $username = Auth::user()->username;
-        
+       
         $thisweek = Carbon::now();
         $lastweek = Carbon::now()->subWeek();
         $twoweeksago = Carbon::now()->subWeek(2);
@@ -301,6 +308,8 @@ class ReviewController extends Controller
 
     function deleteReviews(Request $request)
     {
+        $reviewid = $request->reviews;
+       
         $this->validate($request, [
             'reviews' => 'required',
         ],
@@ -308,13 +317,14 @@ class ReviewController extends Controller
         'reviews.required' => 'Delete review: Make sure you\'ve ticked a review to delete first.',
         ]
         );
-        Reviews::destroy($request->reviews);
+        Reviews::destroy($reviewid);
+        Comments::where('review_id', '=', $reviewid)->delete();
         $request->session()->flash('alert-success', 'Deleted the selected review(s) successfully.');
         return redirect()->back(); 
     }
     
     function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 }
