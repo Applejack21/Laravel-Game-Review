@@ -12,9 +12,11 @@
 */
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['auth' => 'verify'], function() {
     
 Route::get('/', 'ReviewController@index');
+
+Route::get('home', 'ReviewController@index');
 
 Route::get('homepage', 'ReviewController@index');
     
@@ -54,3 +56,5 @@ Route::get('logout', 'LoginController@logout');
 Route::get('register', 'LoginController@registerForm');
 
 Route::post('register', 'LoginController@register');
+
+Auth::routes(['verify' => true]);
