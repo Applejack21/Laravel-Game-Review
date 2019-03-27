@@ -284,6 +284,8 @@ class ReviewController extends Controller
 
     function deleteReviews(Request $request)
     {
+        $reviewid = $request->reviews;
+        
         $this->validate($request, [
             'reviews' => 'required',
         ],
@@ -291,7 +293,7 @@ class ReviewController extends Controller
         'reviews.required' => 'Delete review: Make sure you\'ve ticked a review to delete first.',
         ]
         );
-        Reviews::destroy($request->reviews);
+        Reviews::destroy($reviewid);
         Comments::where('review_id', '=', $reviewid)->delete();
         $request->session()->flash('alert-success', 'Deleted the selected review(s) successfully.');
         return redirect()->back(); 
