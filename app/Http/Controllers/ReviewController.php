@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Reviews;
 use App\Comments;
 use Mail;
@@ -26,19 +27,13 @@ class ReviewController extends Controller
     
     function searchBar(Request $request)
     {
-        $searchTerm = $request->input('searchbar'); 
-      
+        $searchTerm = $request->input('searchbar');
+            
         $reviewSearch = DB::table('reviews')
-                 ->where('game_title', 'like', '%'.$searchTerm.'%')
-                 ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
-                 ->orderByDesc('updated_at')
-                 ->paginate(10);
-      
-        $reviewSearch = DB::table('reviews')
-                 ->where('game_title', 'like', '%'.$searchTerm.'%')
-                 ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
-                 ->orderByDesc('updated_at')
-                 ->paginate(10);
+                ->where('game_title', 'like', '%'.$searchTerm.'%')
+                ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
+                ->orderByDesc('updated_at')
+                ->paginate(10);
             
         return view('review/searchdetails', compact('searchTerm', 'reviewSearch'));
     }
@@ -71,38 +66,19 @@ class ReviewController extends Controller
 
         return response()->json($result);
     }
-        
-    function userChartData()
-    {
-        $username = Auth::user()->username;
-        
-        $result = DB::table('reviews')
-                ->select('review_rating')
-                ->where('review_by', '=', $username)
-                ->get();
-        return response()->json($result);
-    }
     
     function userChartDataComments()
     {
         $username = Auth::user()->username;
-       
+        
         $thisweek = Carbon::now();
         $lastweek = Carbon::now()->subWeek();
-        $twoweeksago = Carbon::now()->subWeek(2);
                 
         $result1 = DB::table('comments')
                 ->select('id')
                 ->where('user_username', '=', $username)
                 ->where('created_at', '<=', $thisweek)
                 ->where('created_at', '>=', $lastweek)
-                ->get();
-        
-         $result2 = DB::table('comments')
-                ->select('id')
-                ->where('user_username', '=', $username)
-                ->where('created_at', '<=', $lastweek)
-                ->where('created_at', '>=', $twoweeksago)
                 ->get();
         
         return Response::json($result1);
@@ -308,8 +284,6 @@ class ReviewController extends Controller
 
     function deleteReviews(Request $request)
     {
-        $reviewid = $request->reviews;
-       
         $this->validate($request, [
             'reviews' => 'required',
         ],
@@ -317,7 +291,7 @@ class ReviewController extends Controller
         'reviews.required' => 'Delete review: Make sure you\'ve ticked a review to delete first.',
         ]
         );
-        Reviews::destroy($reviewid);
+        Reviews::destroy($request->reviews);
         Comments::where('review_id', '=', $reviewid)->delete();
         $request->session()->flash('alert-success', 'Deleted the selected review(s) successfully.');
         return redirect()->back(); 
