@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Reviews;
-use Response;
 use App\Comments;
 use Mail;
 use View;
@@ -27,8 +26,14 @@ class ReviewController extends Controller
     
     function searchBar(Request $request)
     {
-        $searchTerm = $request->input('searchbar');
-         
+        $searchTerm = $request->input('searchbar'); 
+      
+        $reviewSearch = DB::table('reviews')
+                 ->where('game_title', 'like', '%'.$searchTerm.'%')
+                 ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
+                 ->orderByDesc('updated_at')
+                 ->paginate(10);
+      
         $reviewSearch = DB::table('reviews')
                  ->where('game_title', 'like', '%'.$searchTerm.'%')
                  ->Orwhere('review_title', 'like', '%'.$searchTerm.'%')
