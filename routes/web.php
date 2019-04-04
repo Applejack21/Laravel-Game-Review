@@ -12,7 +12,7 @@
 */
 
 
-Route::group(['auth' => 'verify'], function() {
+Route::group(['middleware' => 'auth'], function() {
     
 Route::get('/', 'ReviewController@index');
 
