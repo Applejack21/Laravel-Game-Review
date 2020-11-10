@@ -11,3 +11,5 @@ made on the system
 - Pagination to help limit the amount shown on each page, styled with Bootstrap
 - Bootstrap to help with overall CSS
 - jQuery UI to help with overall style and additions to the system.
+
+**This was built for a university assignment.**
